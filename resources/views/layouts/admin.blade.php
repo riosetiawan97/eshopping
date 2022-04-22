@@ -31,13 +31,13 @@
 </head>
 <body>
     
-    @include('layouts.inc.header')
-    @include('layouts.inc.sidebar')
+    @include('layouts.incadmin.header')
+    @include('layouts.incadmin.sidebar')
     <main id="main" class="main">
         @yield('content')
     </main><!-- End #main -->
 
-    @include('layouts.inc.footer')
+    @include('layouts.incadmin.footer')
     
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     
