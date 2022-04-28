@@ -4,7 +4,17 @@
 @section('content')
     <div class="py-3 mb-4 shadow-sm bg-warning border-top">
         <div class="container">
-            <h6 class="mb-0">Collection / <a href="{{url('category/'.$product->category->slug)}}">{{ $product->category->name }}</a> / <a href="{{url('category/'.$product->category->slug.'/'.$product->slug)}}">{{ $product->name }}</a></h6>
+            <h6 class="mb-0">
+                <a href="{{url('category')}}">
+                    Collection
+                </a> / 
+                <a href="{{url('category/'.$product->category->slug)}}">
+                    {{ $product->category->name }}
+                </a> / 
+                <a href="{{url('category/'.$product->category->slug.'/'.$product->slug)}}">
+                    {{ $product->name }}
+                </a>
+            </h6>
         </div>
     </div>
 
@@ -47,8 +57,8 @@
                             </div>
                             <div class="col-md-9">
                                 <br/>
-                                <button type="submit" class="btn btn-success me-3 float-start">Add to Wishlist <i class="fa fa-heart"></i></button>
-                                <button type="submit" class="btn btn-primary me-3 addToCartBtn float-start">Add to Cart <i class="fa fa-shopping-cart"></i></button>
+                                <button type="submit" class="btn btn-success me-3 float-start"><i class="fa fa-heart"></i> Add to Wishlist</button>
+                                <button type="submit" class="btn btn-primary me-3 addToCartBtn float-start"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                             </div>
                         </div>                        
                     </div>
@@ -65,52 +75,5 @@
 @endsection
 
 @section('scripts')
-    <script>
-        $(document).ready(function(){
-            $('.addToCartBtn').click(function(e){
-                e.preventDefault();
 
-                var product_id = $(this).closest('.product_data').find('.prod_id').val();
-                var product_qty = $(this).closest('.product_data').find('.qty-input').val();
-                $.ajax({
-                    method: "POST",
-                    url: "/add-to-cart",
-                    url: {
-                        'product_id' : product_id,
-                        'product_qty' : product_qty,
-                    },
-                    success: function (response){
-                        
-                    }
-                });
-            });
-
-            $('.increment-btn').click(function(e){
-                e.preventDefault();
-
-                var inc_value = $('.qty-input').val();
-                var value = parseInt(inc_value, 10);
-                value = isNaN(value) ? 0 : value;
-                if(value < 10)
-                {
-                    value++;
-                    $('.qty-input').val(value);
-                }
-            });
-
-            $('.decrement-btn').click(function(e){
-                e.preventDefault();
-
-                var dec_value = $('.qty-input').val();
-                var value = parseInt(dec_value, 10);
-                value = isNaN(value) ? 0 : value;
-                if(value > 1)
-                {
-                    value--;
-                    $('.qty-input').val(value);
-                }
-            });
-            
-        });
-    </script>
 @endsection

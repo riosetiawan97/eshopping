@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\FrontendController;
+use App\Http\Controllers\Frontend\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,8 +28,11 @@ Route::get('category/{cate_slug}/{prod_slug}', [FrontendController::Class, 'view
 
 Auth::routes();
 
+Route::post('add-to-cart', [CartController::Class, 'addproduct']);
+Route::post('delete-cart-item', [CartController::Class, 'deleteproduct']);
+
 Route::middleware(['auth'])->group(function () {
-    Route::post('add-to-cart', [CartController::Class, 'addProduct']);
+    Route::get('cart', [CartController::Class, 'viewcart']);
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
