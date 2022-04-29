@@ -20,6 +20,7 @@
 
     <div class="container mt-3">
         <form action="{{ url('place-order') }}" method="POST">
+            {{ csrf_field() }}
             <div class="row">
                 <div class="col-md-7">
                     <div class="card">
@@ -29,43 +30,43 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <label for="first_name">First Name</label>
-                                    <input type="text" class="form-control" placeholder="Enter First Name" id="first_name">
+                                    <input type="text" class="form-control" placeholder="Enter First Name" name="first_name" id="first_name">
                                 </div>
                                 <div class="col-md-6">
                                     <label for="last_name">Last Name</label>
-                                    <input type="text" class="form-control" placeholder="Enter Last Name" id="last_name">
+                                    <input type="text" class="form-control" placeholder="Enter Last Name" name="last_name" id="last_name">
                                 </div>
                                 <div class="col-md-6 mt-3">
                                     <label for="email">Email</label>
-                                    <input type="text" class="form-control" placeholder="Enter Email" id="email">
+                                    <input type="text" class="form-control" placeholder="Enter Email" name="email" id="email">
                                 </div>
                                 <div class="col-md-6 mt-3">
                                     <label for="phone_number">Phone Number</label>
-                                    <input type="text" class="form-control" placeholder="Enter Phone Number" id="phone_number">
+                                    <input type="text" class="form-control" placeholder="Enter Phone Number" name="phone_number" id="phone_number">
                                 </div>
                                 <div class="col-md-6 mt-3">
                                     <label for="address_1">Address 1</label>
-                                    <input type="text" class="form-control" placeholder="Enter Address 1" id="address_1">
+                                    <input type="text" class="form-control" placeholder="Enter Address 1" name="address_1" id="address_1">
                                 </div>
                                 <div class="col-md-6 mt-3">
                                     <label for="address_2">Address 2</label>
-                                    <input type="text" class="form-control" placeholder="Enter Address 2" id="address_2">
+                                    <input type="text" class="form-control" placeholder="Enter Address 2" name="address_2" id="address_2">
                                 </div>
                                 <div class="col-md-6 mt-3">
                                     <label for="city">City</label>
-                                    <input type="text" class="form-control" placeholder="Enter City" id="city">
+                                    <input type="text" class="form-control" placeholder="Enter City" name="city" id="city">
                                 </div>
                                 <div class="col-md-6 mt-3">
                                     <label for="state">State</label>
-                                    <input type="text" class="form-control" placeholder="Enter State" id="state">
+                                    <input type="text" class="form-control" placeholder="Enter State" name="state" id="state">
                                 </div>
                                 <div class="col-md-6 mt-3">
                                     <label for="country">Country</label>
-                                    <input type="text" class="form-control" placeholder="Enter Country" id="country">
+                                    <input type="text" class="form-control" placeholder="Enter Country" name="country" id="country">
                                 </div>
                                 <div class="col-md-6 mt-3">
                                     <label for="pin_code">Pin Code</label>
-                                    <input type="text" class="form-control" placeholder="Enter Pin Code" id="pin_code">
+                                    <input type="text" class="form-control" placeholder="Enter Pin Code" name="pin_code" id="pin_code">
                                 </div>
                             </div>
                         </div>
