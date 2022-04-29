@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Frontend\FrontendController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,9 +31,12 @@ Auth::routes();
 
 Route::post('add-to-cart', [CartController::Class, 'addproduct']);
 Route::post('delete-cart-item', [CartController::Class, 'deleteproduct']);
+Route::post('update-cart', [CartController::Class, 'updatecart']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('cart', [CartController::Class, 'viewcart']);
+    Route::get('checkout', [CheckoutController::Class, 'index']);
+    Route::get('place-order', [CheckoutController::Class, 'placeorder']);
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

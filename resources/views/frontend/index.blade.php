@@ -19,8 +19,8 @@
                                     <img src="{{ asset('assets/uploads/product/'.$item->image) }}" class="card-img-top" alt="Product Image">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $item->name }}</h5>
-                                        <span class="float-start">{{ $item->selling_price }}</span>
-                                        <span class="float-end"><s>{{ $item->original_price }}</s></span>
+                                        <span class="float-start">Rp {{ $item->selling_price }}</span>
+                                        <span class="float-end"><s>Rp {{ $item->original_price }}</s></span>
                                         <br>
                                         <a href="#" class="btn btn-primary">Go somewhere</a>
                                     </div>

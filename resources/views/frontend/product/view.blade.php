@@ -34,8 +34,8 @@
                         </h2>
 
                         <hr>
-                        <label class="me-3">Original Price : <s>Rp {{ $product->original_price }}</s></label>
-                        <label class="fw-bold">Selling Price : Rp {{ $product->selling_price }}</label>
+                        <label class="me-3">Original Price : <s>Rp. {{ $product->original_price }}</s></label>
+                        <label class="fw-bold">Selling Price : Rp. {{ $product->selling_price }}</label>
                         <p class="mt-3">
                             {!! $product->small_description !!}
                         </p>
@@ -57,8 +57,10 @@
                             </div>
                             <div class="col-md-9">
                                 <br/>
-                                <button type="submit" class="btn btn-success me-3 float-start"><i class="fa fa-heart"></i> Add to Wishlist</button>
-                                <button type="submit" class="btn btn-primary me-3 addToCartBtn float-start"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                <button type="submit" class="btn btn-success me-3 float-start"><i class="fa fa-heart"></i> Add to Wishlist</button>                                
+                                @if($product->qty > 0)
+                                    <button type="submit" class="btn btn-primary me-3 addToCartBtn float-start"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
+                                @endif
                             </div>
                         </div>                        
                     </div>
