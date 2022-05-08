@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2022 at 10:11 AM
--- Server version: 10.4.11-MariaDB
--- PHP Version: 7.4.2
+-- Generation Time: May 08, 2022 at 05:15 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -42,7 +41,10 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `prod_id`, `prod_qty`, `created_at`, `updated_at`) VALUES
-(4, '2', '3', '10', '2022-04-26 20:05:44', '2022-04-26 20:05:44');
+(4, '2', '3', '10', '2022-04-26 20:05:44', '2022-04-26 20:05:44'),
+(22, '1', '3', '1', '2022-05-07 06:39:21', '2022-05-07 06:39:21'),
+(23, '1', '1', '2', '2022-05-07 08:31:00', '2022-05-07 08:31:00'),
+(24, '1', '2', '3', '2022-05-07 08:31:02', '2022-05-07 08:31:02');
 
 -- --------------------------------------------------------
 
@@ -116,7 +118,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2022_04_20_085724_create_product_table', 3),
 (7, '2022_04_22_093041_create_cart_table', 4),
 (8, '2022_04_29_041412_create_orders_table', 5),
-(9, '2022_04_29_042145_create_orders_items_table', 5);
+(9, '2022_04_29_042145_create_orders_items_table', 5),
+(10, '2022_05_07_140905_create_wishlists_table', 6);
 
 -- --------------------------------------------------------
 
@@ -150,11 +153,11 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `user_id`, `fname`, `lname`, `email`, `phone`, `address1`, `address2`, `city`, `state`, `country`, `pincode`, `total_price`, `status`, `message`, `tracking_no`, `created_at`, `updated_at`) VALUES
-(1, '', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '', 0, NULL, 'track6591', '2022-04-30 23:58:29', '2022-04-30 23:58:29'),
+(1, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '', 1, NULL, 'track6591', '2022-04-30 23:58:29', '2022-05-06 08:43:19'),
 (2, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '', 0, NULL, 'track5785', '2022-05-01 00:14:43', '2022-05-01 00:14:43'),
 (3, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1.1', 'Address 2.1', 'City 1', 'State 1', 'Country 1', '12345', '', 0, NULL, 'track3402', '2022-05-01 00:16:09', '2022-05-01 00:16:09'),
 (4, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '', 0, NULL, 'track1763', '2022-05-01 00:25:45', '2022-05-01 00:25:45'),
-(5, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '120000', 0, NULL, 'track6664', '2022-05-01 00:46:52', '2022-05-01 00:46:52'),
+(5, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '1200000', 0, NULL, 'track6664', '2022-05-01 00:46:52', '2022-05-01 00:46:52'),
 (6, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '1200000', 0, NULL, 'track9973', '2022-05-01 00:50:50', '2022-05-01 00:50:50');
 
 -- --------------------------------------------------------
@@ -298,6 +301,28 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `ln
 (1, 'user', 'user1@gmail.com', NULL, '$2y$10$Ns2M.YmTS0kOHwPk9LMjG.6PQz6tFcKcMRhDQg7gEaIPwuybyh582', '1', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', 1, NULL, '2022-04-18 22:05:51', '2022-04-30 23:58:30'),
 (2, 'user2', 'user2@gmail.com', NULL, '$2y$10$YBqI1SCnVy3DJpuB.H92ougD8UYiS0A/rfNFcsrVd/MPtzo.hPZqu', '', '', '', '', '', '', '', '', 0, NULL, '2022-04-18 23:20:22', '2022-04-18 23:20:22');
 
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wishlists`
+--
+
+CREATE TABLE `wishlists` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `user_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prod_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `wishlists`
+--
+
+INSERT INTO `wishlists` (`id`, `user_id`, `prod_id`, `created_at`, `updated_at`) VALUES
+(1, '1', '1', '2022-05-07 08:12:04', '2022-05-07 08:12:04'),
+(4, '1', '2', '2022-05-07 08:45:35', '2022-05-07 08:45:35');
+
 --
 -- Indexes for dumped tables
 --
@@ -367,6 +392,12 @@ ALTER TABLE `users`
   ADD UNIQUE KEY `users_email_unique` (`email`);
 
 --
+-- Indexes for table `wishlists`
+--
+ALTER TABLE `wishlists`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -374,7 +405,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -392,7 +423,7 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `orders`
@@ -423,6 +454,12 @@ ALTER TABLE `product`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `wishlists`
+--
+ALTER TABLE `wishlists`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

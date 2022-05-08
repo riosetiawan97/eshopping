@@ -15,14 +15,28 @@
           <i class="bi bi-card-list"></i>
           <span>Category</span>
         </a>
-      </li><!-- End Dashboard Nav -->
+      </li><!-- End Category Nav -->
 
       <li class="nav-item">
         <a class="nav-link {{ Request::is('product') ? '' : 'collapsed' }}" href="{{url('product')}}">
           <i class="bi bi-card-list"></i>
           <span>Product</span>
         </a>
-      </li><!-- End Dashboard Nav -->
+      </li><!-- End Product Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('order') ? '' : 'collapsed' }}" href="{{url('order')}}">
+          <i class="bi bi-card-list"></i>
+          <span>Order</span>
+        </a>
+      </li><!-- End Product Nav -->
+
+      <li class="nav-item">
+        <a class="nav-link {{ Request::is('user') ? '' : 'collapsed' }}" href="{{url('user')}}">
+          <i class="bi bi-card-list"></i>
+          <span>User</span>
+        </a>
+      </li><!-- End Product Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">

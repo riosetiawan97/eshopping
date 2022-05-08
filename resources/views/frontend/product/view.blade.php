@@ -57,7 +57,7 @@
                             </div>
                             <div class="col-md-9">
                                 <br/>
-                                <button type="submit" class="btn btn-success me-3 float-start"><i class="fa fa-heart"></i> Add to Wishlist</button>                                
+                                <button type="submit" class="btn btn-success me-3 addToWishlist float-start"><i class="fa fa-heart"></i> Add to Wishlist</button>                                
                                 @if($product->qty > 0)
                                     <button type="submit" class="btn btn-primary me-3 addToCartBtn float-start"><i class="fa fa-shopping-cart"></i> Add to Cart</button>
                                 @endif
