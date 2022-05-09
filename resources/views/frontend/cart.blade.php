@@ -46,6 +46,7 @@
                                         <input type="text" name="quantity" class="form-control qty-input text-center" value="{{ $item->prod_qty }}" />
                                         <button class="input-group-text changeQuantity increment-btn">+</button>
                                     </div>
+                                    {{ $item->prod_qty ." ". $item->product->qty ." ". $item->product->qty - $item->prod_qty }}
                                     @php 
                                         $total_price += $item->product->selling_price * $item->prod_qty; 
                                         $total_item = $total_item+1; 

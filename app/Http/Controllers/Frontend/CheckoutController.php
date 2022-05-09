@@ -18,7 +18,7 @@ class CheckoutController extends Controller
         $old_cartitem = Cart::where('user_id',Auth::id())->get();
         foreach ($old_cartitem as $item)
         {
-            if(!Product::where('id', $item->prod_id)->where('qty','>=', $item->prod_qty)->exists())
+            if(!Product::where('id', $item->prod_id)->where('qty','>', $item->prod_qty)->exists())
             {
                 $removeitem = Cart::where('user_id',Auth::id())->where('prod_id',$item->prod_id)->first();
                 $removeitem->delete();

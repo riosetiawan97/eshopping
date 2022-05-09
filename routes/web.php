@@ -33,10 +33,12 @@ Route::get('category/{cate_slug}/{prod_slug}', [FrontendController::Class, 'view
 
 Auth::routes();
 
+Route::get('load-cart-data', [CartController::Class, 'cartcount']);
 Route::post('add-to-cart', [CartController::Class, 'addproduct']);
 Route::post('delete-cart-item', [CartController::Class, 'deleteproduct']);
 Route::post('update-cart', [CartController::Class, 'updatecart']);
 
+Route::get('load-wishlist-data', [WishlistController::Class, 'wishlistcount']);
 Route::post('add-to-wishlist', [WishlistController::Class, 'add']);
 Route::post('remove-wishlist-item', [WishlistController::Class, 'deleteitem']);
 

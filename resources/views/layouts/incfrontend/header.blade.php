@@ -14,12 +14,12 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('cart') ? 'active' : '' }}" href="{{ url('cart') }}">Cart
-                        <span class="badge badge-pill bg-primary cart-count"></span>
+                        <span class="badge badge-pill bg-primary cart-count">0</span>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{ Request::is('wishlist') ? 'active' : '' }}" href="{{ url('wishlist') }}">Wishlist
-                        <span class="badge badge-pill bg-success wishlist-count"></span>
+                        <span class="badge badge-pill bg-success wishlist-count">0</span>
                     </a>
                 </li>
                 @guest

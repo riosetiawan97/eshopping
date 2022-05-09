@@ -97,7 +97,7 @@
                                     </tbody>
                                 </table>
                                 <hr>
-                                <button class="btn btn-primary float-end"><i class="fa fa-shopping-bag"></i> Place Order</button>
+                                <button class="btn btn-primary w-100 float-end"><i class="fa fa-shopping-bag"></i> Place Order</button>
                             @else
                                 <div class="text-center">
                                     <h4> No Product In Carts</h4>
