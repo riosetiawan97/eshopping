@@ -17,7 +17,7 @@ class CreateCartTable extends Migration
             $table->id();
             $table->string('user_id');
             $table->string('prod_id');
-            $table->string('prod_qty');
+            $table->float('prod_qty');
             $table->timestamps();
         });
     }
