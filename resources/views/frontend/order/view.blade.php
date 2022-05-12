@@ -81,6 +81,7 @@
                                 </tbody>
                             </table>
                             <h4 class="px-2">Total Price : <span class="float-end">Rp. {{ $order->total_price }}</span></h4>
+                            <h6 class="px-2">Payment Mode : {{ $order->payment_mode }}</h6>
                         </div>
                     </div>
                 </div>

@@ -110,30 +110,30 @@ if($request->input('payment_mode') == 'Paid by Razorpay' || $request->input('pay
         {
             $total_price += $item->product->selling_price * $item->prod_qty;
         }
-	$first_name = $request->input('first_name');
-        	$last_name = $request->input('last_name');
-	$email = $request->input('email');
-	$phone_number = $request->input('phone_number');
-        	$address_1 = $request->input('address_1');
-        	$address_2 = $request->input('address_2');
-        	$city = $request->input('city');
-        	$state = $request->input('state');
-        	$country = $request->input('country');
-	$pin_code = $request->input('pin_code');
+        $first_name = $request->input('first_name');
+        $last_name = $request->input('last_name');
+        $email = $request->input('email');
+        $phone_number = $request->input('phone_number');
+        $address_1 = $request->input('address_1');
+        $address_2 = $request->input('address_2');
+        $city = $request->input('city');
+        $state = $request->input('state');
+        $country = $request->input('country');
+        $pin_code = $request->input('pin_code');
 
-	return response()->json([
-		'first_name' => $first_name,
-        		'last_name' => $last_name,
-	        	'email' => $email,
-		'phone_number' => $phone_number,
-        		'address_1' => $address_1,
-        		'address_2' => $address_2,
-        		'city' => $city,
-        		'state' => $state,
-        		'country' => $country,
-	        	'pin_code' => $pin_code,
-	        	'total_price' => $total_price
-	]);
+        return response()->json([
+            'first_name' => $first_name,
+            'last_name' => $last_name,
+            'email' => $email,
+            'phone_number' => $phone_number,
+            'address_1' => $address_1,
+            'address_2' => $address_2,
+            'city' => $city,
+            'state' => $state,
+            'country' => $country,
+            'pin_code' => $pin_code,
+            'total_price' => $total_price
+        ]);
 
     }
 

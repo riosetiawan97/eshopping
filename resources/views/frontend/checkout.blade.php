@@ -120,8 +120,8 @@
                                 <hr>
                                 <input type="hidden" value="COD" name="payment_mode">
                                 <button type="submit" class="btn btn-success w-100 float-end"><i class="fa fa-truck"></i> Place Order | COD</button>
-                                <button type="button" class="btn btn-primary w-100 float-end mt-3 razorpay_btn"><i class="fa fa-money"></i> Pay with Razorpay</button>
-                                <div id="paypal_id_container"></div>
+                                <button type="button" class="btn btn-primary w-100 float-end mt-3 mb-3 razorpay_btn"><i class="fa fa-money"></i> Pay with Razorpay</button>
+                                <div id="paypal-button-container"></div>
                             @else
                                 <div class="text-center">
                                     <h4> No Product In Carts</h4>
@@ -136,7 +136,7 @@
 @endsection
 
 @section('scripts')
-	<script src="https://www.paypal.com/sdk/js?client-id=AZs2Jlax_z6GXz7Xo8iCfBF2PwwbatjT0fG0M--HtqzLpL8UZfLx_zbIB8SupDvz_kH98zh5Owl6QV94"></script>
+	<script src="https://www.paypal.com/sdk/js?client-id=Af1fkHX61gQpSgicPXMw1Ypy6acTvR5iC1VCtIA8PaxIowiQb1XshtFaV5EsIlq6gzpoIsIoWckH8Zks"></script>
 	<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 	<script>
 		paypal.Buttons({
@@ -153,43 +153,43 @@
 				return actions.order.capture().then(function(details){
 					//alert('Transaction completed by ' + details.payer.name.given_name);
 
-var first_name = $('.first_name').val();
-        var last_name = $('.last_name').val();
-        var email = $('.email').val();
-        var phone_number = $('.phone_number').val();
-        var address_1 = $('.address_1').val();
-        var address_2 = $('.address_2').val();
-        var city = $('.city').val();
-        var state = $('.state').val();
-        var country = $('.country').val();
-        var pin_code = $('.pin_code').val();
+                var first_name = $('.first_name').val();
+                var last_name = $('.last_name').val();
+                var email = $('.email').val();
+                var phone_number = $('.phone_number').val();
+                var address_1 = $('.address_1').val();
+                var address_2 = $('.address_2').val();
+                var city = $('.city').val();
+                var state = $('.state').val();
+                var country = $('.country').val();
+                var pin_code = $('.pin_code').val();
 
- //alert(responsea.razorpay_payment_id);
-	 $.ajax({
-            method: "POST",
-            url: "/place-order",
-            data: {
-	'first_name':response.first_name,
-        		'last_name':last_name,
-	        	'email':email,
-		'phone_number':phone_number,
-        		'address_1':address_1,
-        		'address_2':address_2,
-        		'city':city,
-        		'state':state,
-        		'country':country,
-	        	'pin_code':pin_code,
-	        	'payment_mode':"Paid by Paypal",
-	        	'payment_id':details.id,
-},
-            success: function (response){
-	//alert(response.status);
-	swal(response.status);
-	window.location.href = "/my-orders";
+                //alert(responsea.razorpay_payment_id);
+                    $.ajax({
+                        method: "POST",
+                        url: "/place-order",
+                        data: {
+                            'first_name':first_name,
+                            'last_name':last_name,
+                            'email':email,
+                            'phone_number':phone_number,
+                            'address_1':address_1,
+                            'address_2':address_2,
+                            'city':city,
+                            'state':state,
+                            'country':country,
+                            'pin_code':pin_code,
+                            'payment_mode':"Paid by Paypal",
+                            'payment_id':details.id,
+                        },
+                        success: function (response){
+                            //alert(response.status);
+                            swal(response.status);
+                            window.location.href = "/my-order";
+                        }
+                    });
+                });
             }
-        });
-				});
-			}
 		}).render('#paypal-button-container');
 	</script>
 @endsection
