@@ -29,6 +29,7 @@
                     <table class="table table-stripped table-bordered">
                         <thead>
                             <tr>
+                                <th>Order Date</th>
                                 <th>Tracking Number</th>
                                 <th>Total Price</th>
                                 <th>Status</th>
@@ -38,6 +39,7 @@
                         <tbody>
                             @foreach ($order as $item)
                             <tr>
+                                <td>{{ date('d-m-Y', strtotime($item->created_at)) }}</td>
                                 <td>{{ $item->tracking_no }}</td>
                                 <td>Rp. {{ $item->total_price }}</td>
                                 <td>{{ $item->status == '0' ? 'Pending' : 'Completed' }}</td>

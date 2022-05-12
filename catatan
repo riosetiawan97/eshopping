@@ -22,3 +22,6 @@ php artisan migrate
 php artisan make:controller Admin/CategoryController
 php artisan make:model Category -m
 
+Key Id : rzp_test_haQk5MyvB2FZyB
+Key Secret : o9E2qT35HyYiTrDAv4NTCzBm
+

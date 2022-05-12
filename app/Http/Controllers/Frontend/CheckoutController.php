@@ -42,6 +42,8 @@ class CheckoutController extends Controller
         $order->state = $request->input('state');
         $order->country = $request->input('country');
         $order->pincode = $request->input('pin_code');
+        $order->payment_mode = $request->input('payment_mode');
+        $order->payment_id = $request->input('payment_id');
 
         //Count Total Price
         $total = 0;
@@ -92,7 +94,46 @@ class CheckoutController extends Controller
         $cartitem = Cart::where('user_id',Auth::id())->get();
         Cart::destroy($cartitem);
 
+if($request->input('payment_mode') == 'Paid by Razorpay' || $request->input('payment_mode') == 'Paid by Paypal')
+        {
+	return response()->json(['status'=>"Order Placed Successfully"]);
+        }
         return redirect('/')->with('status',"Order Placed Successfully");
+
+    }
+
+    public function razorpaycheck(Request $request)
+    {
+        $cartitem = Cart::where('user_id',Auth::id())->get();
+        $total_price = 0;
+        foreach ($cartitem as $item)
+        {
+            $total_price += $item->product->selling_price * $item->prod_qty;
+        }
+	$first_name = $request->input('first_name');
+        	$last_name = $request->input('last_name');
+	$email = $request->input('email');
+	$phone_number = $request->input('phone_number');
+        	$address_1 = $request->input('address_1');
+        	$address_2 = $request->input('address_2');
+        	$city = $request->input('city');
+        	$state = $request->input('state');
+        	$country = $request->input('country');
+	$pin_code = $request->input('pin_code');
+
+	return response()->json([
+		'first_name' => $first_name,
+        		'last_name' => $last_name,
+	        	'email' => $email,
+		'phone_number' => $phone_number,
+        		'address_1' => $address_1,
+        		'address_2' => $address_2,
+        		'city' => $city,
+        		'state' => $state,
+        		'country' => $country,
+	        	'pin_code' => $pin_code,
+	        	'total_price' => $total_price
+	]);
 
     }
 

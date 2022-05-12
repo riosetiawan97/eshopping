@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 08, 2022 at 05:15 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: May 12, 2022 at 12:23 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -31,7 +32,7 @@ CREATE TABLE `cart` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `user_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `prod_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `prod_qty` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prod_qty` float NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -41,10 +42,8 @@ CREATE TABLE `cart` (
 --
 
 INSERT INTO `cart` (`id`, `user_id`, `prod_id`, `prod_qty`, `created_at`, `updated_at`) VALUES
-(4, '2', '3', '10', '2022-04-26 20:05:44', '2022-04-26 20:05:44'),
-(22, '1', '3', '1', '2022-05-07 06:39:21', '2022-05-07 06:39:21'),
-(23, '1', '1', '2', '2022-05-07 08:31:00', '2022-05-07 08:31:00'),
-(24, '1', '2', '3', '2022-05-07 08:31:02', '2022-05-07 08:31:02');
+(4, '2', '3', 10, '2022-04-26 20:05:44', '2022-04-26 20:05:44'),
+(28, '1', '3', 1, '2022-05-12 03:16:31', '2022-05-12 03:16:31');
 
 -- --------------------------------------------------------
 
@@ -141,6 +140,8 @@ CREATE TABLE `orders` (
   `country` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `pincode` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `total_price` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payment_mode` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payment_id` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 0,
   `message` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tracking_no` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -152,13 +153,15 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `fname`, `lname`, `email`, `phone`, `address1`, `address2`, `city`, `state`, `country`, `pincode`, `total_price`, `status`, `message`, `tracking_no`, `created_at`, `updated_at`) VALUES
-(1, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '', 1, NULL, 'track6591', '2022-04-30 23:58:29', '2022-05-06 08:43:19'),
-(2, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '', 0, NULL, 'track5785', '2022-05-01 00:14:43', '2022-05-01 00:14:43'),
-(3, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1.1', 'Address 2.1', 'City 1', 'State 1', 'Country 1', '12345', '', 0, NULL, 'track3402', '2022-05-01 00:16:09', '2022-05-01 00:16:09'),
-(4, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '', 0, NULL, 'track1763', '2022-05-01 00:25:45', '2022-05-01 00:25:45'),
-(5, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '1200000', 0, NULL, 'track6664', '2022-05-01 00:46:52', '2022-05-01 00:46:52'),
-(6, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '1200000', 0, NULL, 'track9973', '2022-05-01 00:50:50', '2022-05-01 00:50:50');
+INSERT INTO `orders` (`id`, `user_id`, `fname`, `lname`, `email`, `phone`, `address1`, `address2`, `city`, `state`, `country`, `pincode`, `total_price`, `payment_mode`, `payment_id`, `status`, `message`, `tracking_no`, `created_at`, `updated_at`) VALUES
+(1, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '', '', NULL, 1, NULL, 'track6591', '2022-04-30 23:58:29', '2022-05-06 08:43:19'),
+(2, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '', '', NULL, 0, NULL, 'track5785', '2022-05-01 00:14:43', '2022-05-01 00:14:43'),
+(3, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1.1', 'Address 2.1', 'City 1', 'State 1', 'Country 1', '12345', '', '', NULL, 0, NULL, 'track3402', '2022-05-01 00:16:09', '2022-05-01 00:16:09'),
+(4, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '', '', NULL, 0, NULL, 'track1763', '2022-05-01 00:25:45', '2022-05-01 00:25:45'),
+(5, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '1200000', '', NULL, 0, NULL, 'track6664', '2022-05-01 00:46:52', '2022-05-01 00:46:52'),
+(6, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '1200000', '', NULL, 0, NULL, 'track9973', '2022-05-01 00:50:50', '2022-05-01 00:50:50'),
+(7, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '120000', 'Paid by Razorpay', 'pay_JUFk1X6fGH84rM', 0, NULL, 'track3829', '2022-05-12 01:38:18', '2022-05-12 01:38:18'),
+(8, '1', 'user', '1', 'user1@gmail.com', '1234567890', 'Address 1', 'Address 2', 'City 1', 'State 1', 'Country 1', '12345', '100000', 'COD', NULL, 0, NULL, 'track6083', '2022-05-12 01:41:20', '2022-05-12 01:41:20');
 
 -- --------------------------------------------------------
 
@@ -170,7 +173,7 @@ CREATE TABLE `orders_items` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `order_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `prod_id` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `prod_qty` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prod_qty` float NOT NULL,
   `prod_price` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -181,21 +184,23 @@ CREATE TABLE `orders_items` (
 --
 
 INSERT INTO `orders_items` (`id`, `order_id`, `prod_id`, `prod_qty`, `prod_price`, `created_at`, `updated_at`) VALUES
-(1, '1', '1', '1', '1700000', '2022-04-30 23:58:29', '2022-04-30 23:58:29'),
-(2, '1', '3', '1', '120000', '2022-04-30 23:58:29', '2022-04-30 23:58:29'),
-(3, '1', '4', '2', '100000', '2022-04-30 23:58:29', '2022-04-30 23:58:29'),
-(4, '1', '6', '1', '210000', '2022-04-30 23:58:29', '2022-04-30 23:58:29'),
-(5, '2', '1', '1', '1700000', '2022-05-01 00:14:44', '2022-05-01 00:14:44'),
-(6, '2', '3', '1', '120000', '2022-05-01 00:14:44', '2022-05-01 00:14:44'),
-(7, '2', '4', '2', '100000', '2022-05-01 00:14:44', '2022-05-01 00:14:44'),
-(8, '2', '6', '1', '210000', '2022-05-01 00:14:44', '2022-05-01 00:14:44'),
-(9, '3', '1', '1', '1700000', '2022-05-01 00:16:09', '2022-05-01 00:16:09'),
-(10, '3', '3', '1', '120000', '2022-05-01 00:16:09', '2022-05-01 00:16:09'),
-(11, '3', '4', '2', '100000', '2022-05-01 00:16:09', '2022-05-01 00:16:09'),
-(12, '3', '6', '1', '210000', '2022-05-01 00:16:09', '2022-05-01 00:16:09'),
-(13, '4', '1', '1', '1700000', '2022-05-01 00:25:45', '2022-05-01 00:25:45'),
-(14, '5', '3', '10', '120000', '2022-05-01 00:46:52', '2022-05-01 00:46:52'),
-(15, '6', '3', '10', '120000', '2022-05-01 00:50:50', '2022-05-01 00:50:50');
+(1, '1', '1', 1, '1700000', '2022-04-30 23:58:29', '2022-04-30 23:58:29'),
+(2, '1', '3', 1, '120000', '2022-04-30 23:58:29', '2022-04-30 23:58:29'),
+(3, '1', '4', 2, '100000', '2022-04-30 23:58:29', '2022-04-30 23:58:29'),
+(4, '1', '6', 1, '210000', '2022-04-30 23:58:29', '2022-04-30 23:58:29'),
+(5, '2', '1', 1, '1700000', '2022-05-01 00:14:44', '2022-05-01 00:14:44'),
+(6, '2', '3', 1, '120000', '2022-05-01 00:14:44', '2022-05-01 00:14:44'),
+(7, '2', '4', 2, '100000', '2022-05-01 00:14:44', '2022-05-01 00:14:44'),
+(8, '2', '6', 1, '210000', '2022-05-01 00:14:44', '2022-05-01 00:14:44'),
+(9, '3', '1', 1, '1700000', '2022-05-01 00:16:09', '2022-05-01 00:16:09'),
+(10, '3', '3', 1, '120000', '2022-05-01 00:16:09', '2022-05-01 00:16:09'),
+(11, '3', '4', 2, '100000', '2022-05-01 00:16:09', '2022-05-01 00:16:09'),
+(12, '3', '6', 1, '210000', '2022-05-01 00:16:09', '2022-05-01 00:16:09'),
+(13, '4', '1', 1, '1700000', '2022-05-01 00:25:45', '2022-05-01 00:25:45'),
+(14, '5', '3', 10, '120000', '2022-05-01 00:46:52', '2022-05-01 00:46:52'),
+(15, '6', '3', 10, '120000', '2022-05-01 00:50:50', '2022-05-01 00:50:50'),
+(16, '7', '3', 1, '120000', '2022-05-12 01:38:19', '2022-05-12 01:38:19'),
+(17, '8', '4', 1, '100000', '2022-05-12 01:41:20', '2022-05-12 01:41:20');
 
 -- --------------------------------------------------------
 
@@ -243,7 +248,7 @@ CREATE TABLE `product` (
   `original_price` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `selling_price` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `qty` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `qty` float NOT NULL,
   `tax` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 0,
   `trending` tinyint(4) NOT NULL DEFAULT 0,
@@ -259,13 +264,13 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `cate_id`, `name`, `slug`, `small_description`, `description`, `original_price`, `selling_price`, `image`, `qty`, `tax`, `status`, `trending`, `meta_title`, `meta_description`, `meta_keywords`, `created_at`, `updated_at`) VALUES
-(1, 7, 'Xiaomi', 'xiaomi', 'Xiaomi', 'Xiaomi', '1500000', '1700000', '1650512917.jpg', '10', '170000', 0, 1, 'xiaomi', 'xiaomi', 'xiaomi', '2022-04-20 20:48:37', '2022-05-01 00:25:45'),
-(2, 7, 'Vivo', 'vivo', 'vivo', 'vivo', '1600000', '1800000', '1650512971.jpeg', '15', '180000', 0, 1, 'vivo', 'vivo', 'vivo', '2022-04-20 20:49:31', '2022-04-28 20:30:23'),
-(3, 2, 'Lampu', 'lampu', 'lampu', 'lampu', '100000', '120000', '1650513024.jpg', '30', '12000', 0, 1, 'lampu', 'lampu', 'lampu', '2022-04-20 20:50:24', '2022-05-01 00:50:50'),
-(4, 3, 'Topi', 'topi', 'topi luar', 'topi', '90000', '100000', '1650517625.jpg', '50', '1000', 0, 1, 'topi', 'topi', 'topi', '2022-04-20 20:51:12', '2022-04-21 20:38:52'),
-(6, 3, 'Jaket', 'jaket', 'jaket', 'jaket', '200000', '210000', '1650529890.jpg', '50', '20000', 0, 1, 'jaket', 'jaket', 'jaket', '2022-04-21 01:31:30', '2022-04-21 20:39:00'),
-(7, 7, 'Headphone', 'headphone', 'headphone', 'headphone', '110000', '90000', '1651203124.png', '0', '9000', 0, 1, 'headphone', 'headphone', 'headphone', '2022-04-28 20:32:04', '2022-04-28 20:32:04'),
-(8, 6, 'Bor', 'bor', 'bor', 'bor', '200000', '190000', '1651203628.jpg', '0', '10000', 0, 1, 'bor', 'bor', 'bor', '2022-04-28 20:40:28', '2022-04-28 20:42:09');
+(1, 7, 'Xiaomi', 'xiaomi', 'Xiaomi', 'Xiaomi', '1500000', '1700000', '1650512917.jpg', 10, '170000', 0, 1, 'xiaomi', 'xiaomi', 'xiaomi', '2022-04-20 20:48:37', '2022-05-01 00:25:45'),
+(2, 7, 'Vivo', 'vivo', 'vivo', 'vivo', '1600000', '1800000', '1650512971.jpeg', 15, '180000', 0, 1, 'vivo', 'vivo', 'vivo', '2022-04-20 20:49:31', '2022-04-28 20:30:23'),
+(3, 2, 'Lampu', 'lampu', 'lampu', 'lampu', '100000', '120000', '1650513024.jpg', 29, '12000', 0, 1, 'lampu', 'lampu', 'lampu', '2022-04-20 20:50:24', '2022-05-12 01:38:19'),
+(4, 3, 'Topi', 'topi', 'topi luar', 'topi', '90000', '100000', '1650517625.jpg', 49, '1000', 0, 1, 'topi', 'topi', 'topi', '2022-04-20 20:51:12', '2022-05-12 01:41:20'),
+(6, 3, 'Jaket', 'jaket', 'jaket', 'jaket', '200000', '210000', '1650529890.jpg', 50, '20000', 0, 1, 'jaket', 'jaket', 'jaket', '2022-04-21 01:31:30', '2022-04-21 20:39:00'),
+(7, 7, 'Headphone', 'headphone', 'headphone', 'headphone', '110000', '90000', '1651203124.png', 0, '9000', 0, 1, 'headphone', 'headphone', 'headphone', '2022-04-28 20:32:04', '2022-04-28 20:32:04'),
+(8, 6, 'Bor', 'bor', 'bor', 'bor', '200000', '190000', '1651203628.jpg', 0, '10000', 0, 1, 'bor', 'bor', 'bor', '2022-04-28 20:40:28', '2022-04-28 20:42:09');
 
 -- --------------------------------------------------------
 
@@ -405,7 +410,7 @@ ALTER TABLE `wishlists`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -429,13 +434,13 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `orders_items`
 --
 ALTER TABLE `orders_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`

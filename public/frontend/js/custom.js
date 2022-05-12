@@ -29,16 +29,6 @@ $(document).ready(function(){
             success: function (response){
                 $('.wishlist-count').html('');
                 $('.wishlist-count').html(response.count);
-
-    function loadcart()
-    {
-        e.preventDefault();
-
-        $.ajax({
-            method: "GET",
-            url: "/load-cart-data",
-            success: function (response){
-                swal(response.status);
             }
         });
     }

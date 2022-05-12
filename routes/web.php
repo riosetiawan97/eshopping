@@ -50,6 +50,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('my-order', [UserController::Class, 'index']);
     Route::get('view-order/{id}', [UserController::Class, 'view']);
     Route::get('wishlist', [WishlistController::Class, 'index']);
+
+    Route::post('proceed-to-pay', [CheckoutController::Class, 'razorpaycheck']);
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
