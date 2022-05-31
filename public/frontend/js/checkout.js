@@ -204,9 +204,11 @@ $(document).ready(function(){
                                     'payment_id':responsea.razorpay_payment_id,
                                 },
                                 success: function (responseb){
-                                //alert(responseb.status);
-                                swal(responseb.status);
-                                window.location.href = "/my-orders";
+                                    //alert(responseb.status);
+                                    swal(responseb.status)
+                                    .then((value) => {
+                                        window.location.href = "/my-order";
+                                    });
                                 }
                             });
                         },

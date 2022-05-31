@@ -29,6 +29,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
     {{-- Font Awesome --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
 </head>
@@ -39,6 +41,11 @@
         @yield('content')
     </main><!-- End #main -->
 
+    <div class="whatsapp-chat">
+        <a href="https://wa.me/6283891475606?text=Saya%20tertarik%20dengan%20mobil%20Anda%20yang%20dijual" target="_blank">
+            <img src="{{ asset('assets/images/whatsapp-logo.png') }}" alt="whatsapp-logo" height="80px" width="80px">
+        </a>
+    </div>
     
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
     
@@ -49,6 +56,41 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="{{ asset('frontend/js/custom.js') }}"></script>
     <script src="{{ asset('frontend/js/checkout.js') }}"></script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+            var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+            s1.async=true;
+            s1.src='https://embed.tawk.to/6294eff67b967b117991fdbf/1g4asinij';
+            s1.charset='UTF-8';
+            s1.setAttribute('crossorigin','*');
+            s0.parentNode.insertBefore(s1,s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+
+    <script>
+        var availableTags = [ ];
+        $.ajax({
+            method: "GET",
+            url: "/product-list",
+            success: function (response){
+                startAutoComplete(response);
+            }
+        });
+
+        function startAutoComplete(availableTags)
+        {
+            $( "#search_product" ).autocomplete({
+            source: availableTags
+            });
+        }
+    </script>
+
     @if(session('status'))
         <script>
             swal("{{ session('status') }}");

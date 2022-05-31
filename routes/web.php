@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\RatingController;
+use App\Http\Controllers\Frontend\ReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,8 @@ Route::get('category', [FrontendController::Class, 'category']);
 Route::get('category/{slug}', [FrontendController::Class, 'viewcategory']);
 Route::get('category/{cate_slug}/{prod_slug}', [FrontendController::Class, 'viewproduct']);
 
+Route::get('product-list', [FrontendController::Class, 'productlistAjax']);
+Route::post('searchproduct', [FrontendController::Class, 'searchProduct']);
 Auth::routes();
 
 Route::get('load-cart-data', [CartController::Class, 'cartcount']);
@@ -51,6 +54,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('my-order', [UserController::Class, 'index']);
     Route::get('view-order/{id}', [UserController::Class, 'view']);
     Route::post('add-rating', [RatingController::Class, 'add']);
+    Route::get('add-review/{product_slug}/userreview', [ReviewController::Class, 'add']);
+    Route::post('add-review', [ReviewController::Class, 'create']);
+    Route::get('edit-review/{product_slug}/userreview', [ReviewController::Class, 'edit']);
+    Route::put('update-review', [ReviewController::Class, 'update']);
     Route::get('wishlist', [WishlistController::Class, 'index']);
 
     Route::post('proceed-to-pay', [CheckoutController::Class, 'razorpaycheck']);

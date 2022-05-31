@@ -184,8 +184,10 @@
                         },
                         success: function (response){
                             //alert(response.status);
-                            swal(response.status);
-                            window.location.href = "/my-order";
+                            swal(response.status)
+                            .then((value) => {
+                                window.location.href = "/my-order";
+                            });
                         }
                     });
                 });

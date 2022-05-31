@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Rating;
+use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 
 class FrontendController extends Controller
@@ -49,6 +50,7 @@ class FrontendController extends Controller
                 $rating = Rating::where('prod_id', $product->id)->get();
                 $rating_sum = Rating::where('prod_id', $product->id)->sum('stars_rated');
                 $user_rating = Rating::where('prod_id', $product->id)->where('user_id', Auth::id())->first();
+                $review = Review::where('prod_id', $product->id)->get();
 
                 if($rating->count() > 0)
                 {
@@ -58,7 +60,7 @@ class FrontendController extends Controller
                 {
                     $rating_value = 0;
                 }
-                return view('frontend.product.view',compact('product','rating','rating_value','user_rating'));
+                return view('frontend.product.view',compact('product','rating','rating_value','user_rating','review'));
             }
             else
             {
@@ -71,4 +73,36 @@ class FrontendController extends Controller
         }
     }
 
+    public function productlistAjax()
+    {
+        $product = Product::select('name')->where('status', '0')->get();
+        $data = [];
+
+        foreach ($product as $item) {
+            $data[] = $item['name'];
+        }
+        return $data;
+    }
+
+    public function searchProduct(Request $request)
+    {        
+        $searched_product = $request->product_name;
+        if($searched_product != "")
+        {
+            $product = Product::where("name","LIKE","%$searched_product%")->first();
+            if($product)
+            {
+                return redirect('category/'.$product->category->slug.'/'.$product->slug);
+            }
+            else
+            {
+                return redirect()->back()->with("status","No Products matched your search");
+            }
+        }
+        else
+        {
+            return redirect()->back();
+        }
+    }
+    
 }

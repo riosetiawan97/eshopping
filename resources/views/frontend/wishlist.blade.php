@@ -19,7 +19,7 @@
 </div>
 
     <div class="container my-5">
-        <div class="card shadow">
+        <div class="card shadow wishlistitem">
             @if($wishlist->count()>0)
                 <div class="card-body">
                     @php 

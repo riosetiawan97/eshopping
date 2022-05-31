@@ -26,6 +26,15 @@ a{
     padding: 5px !important;
 }
 
+.search-bar{
+  width: 40%;
+  margin-left: 5%;
+}
+
+.ui-menu{
+  z-index: 3500 !important;
+}
+
 /* rating */
 .rating-css div {
     color: #ffe400;
@@ -56,4 +65,10 @@ a{
 
 .checked{
   color: #ffd900;
+}
+
+.whatsapp-chat{
+  bottom: 10px;
+  left: 10px;
+  position: fixed;
 }
